@@ -3,11 +3,12 @@ FROM archlinux
 
 # makepkg cannot (and should not) be run as root:
 RUN useradd -m notroot && \
-pacman -U https://dl.bintray.com/boostorg/release/1.71.0/source/boost_1_71_0.tar.gz && \
-pacman -Sy --noconfirm archlinux-keyring && \
+#pacman -U https://dl.bintray.com/boostorg/release/1.71.0/source/boost_1_71_0.tar.gz && \
+#pacman -Sy --noconfirm archlinux-keyring && \
     pacman -Sy --noconfirm base-devel git && \
     pacman -Syu --noconfirm && \
  pacman -Syu --noconfirm wget && \
+pacman -Syu --npconfirm boost-libs && \
 
 # Allow notroot to run stuff as root (to install dependencies):
  echo "notroot ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/notroot
